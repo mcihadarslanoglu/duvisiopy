@@ -1,0 +1,9 @@
+{
+  "dim": 512,
+  "image_size": 224,
+  "depth": 5,
+  "heads": 8,
+  "mlp_dim": 512,
+  "num_classes": 1000,
+  "t2t_layers": "((7, 4), (3, 2), (3, 2))"
+}
