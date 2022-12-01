@@ -181,10 +181,10 @@ class CaiT(nn.Module):
         self.cls_transformer = Transformer(
             dim, cls_depth, heads, dim_head, mlp_dim, dropout, layer_dropout)
 
-        self.mlp_head = nn.Sequential(
+        """self.mlp_head = nn.Sequential(
             nn.LayerNorm(dim),
             nn.Linear(dim, num_classes)
-        )
+        )"""
 
     def forward(self, img):
         x = self.to_patch_embedding(img)
@@ -197,5 +197,5 @@ class CaiT(nn.Module):
 
         cls_tokens = repeat(self.cls_token, '() n d -> b n d', b=b)
         x = self.cls_transformer(cls_tokens, context=x)
-
+        return x[:, 0]
         return self.mlp_head(x[:, 0])
